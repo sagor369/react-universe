@@ -16,10 +16,20 @@ const Card = () => {
 
         setShow(true)
     }
+    const handleSort = () => {
+        const sortedData = Cards.sort((a, b) => {
+          return new Date(b.published_in) - new Date(a.published_in);
+        });
+        setCards([...Cards, sortedData]);
+
+      };
 
     
     return (
         <>
+        <span onClick={handleSort}>
+        <Button> sort by date</Button>
+        </span>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3'>
             {
                 Cards.slice(0, show ? 12 :6).map(card => <ShoppingCard card={card}></ShoppingCard>)
